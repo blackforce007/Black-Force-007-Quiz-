@@ -8,10 +8,10 @@
 </head>
 <body>
   <main id="app">
-    <header class="topbar">
+    <header class="topbar card">
       <h1>Black Force 007</h1>
       <div class="controls">
-        <label class="switch">
+        <label class="switch" title="Theme: Defense">
           <input id="themeToggle" type="checkbox" />
           <span class="slider"></span>
         </label>
@@ -46,7 +46,11 @@
     <section id="game" class="hidden card">
       <div class="game-header">
         <div id="qCounter">প্রশ্ন 1 / 50</div>
-        <div id="scoreBox">স্কোর: <span id="score">0</span></div>
+        <div class="status-boxes">
+          <div id="scoreBox" class="status">স্কোর: <span id="score">0</span></div>
+          <div id="correctBox" class="status correct-small">✓ <span id="correctSmall">0</span></div>
+          <div id="wrongBox" class="status wrong-small">✕ <span id="wrongSmall">0</span></div>
+        </div>
       </div>
 
       <div id="questionArea">
@@ -63,22 +67,49 @@
       </div>
     </section>
 
-    <section id="result" class="hidden card">
-      <h2>ফলাফল</h2>
-      <div class="result-grid">
-        <div>স্কোর:<strong id="finalScore"></strong></div>
-        <div>সঠিক:<strong id="correctCount"></strong></div>
-        <div>ভুল:<strong id="wrongCount"></strong></div>
-        <div>মোট সময়:<strong id="totalTime"></strong></div>
+    <!-- RESULT DASHBOARD (NEW) -->
+    <section id="result" class="hidden card result-dashboard">
+      <header class="result-head">
+        <h2>ফাইনাল রেজাল্ট</h2>
+        <div class="result-top">
+          <div class="big-score"> <div class="label">স্কোর</div> <div id="finalScore" class="big-num">0</div> </div>
+          <div class="summary">
+            <div>সঠিক: <strong id="correctCount">0</strong></div>
+            <div>ভুল: <strong id="wrongCount">0</strong></div>
+            <div>সঠিকতার হার: <strong id="accuracy">0%</strong></div>
+            <div>মোট সময়: <strong id="totalTime">0s</strong></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="result-body">
+        <section class="panel">
+          <h3>বিস্তারিত (Question by question)</h3>
+          <div id="qBreakdown" class="q-breakdown"></div>
+        </section>
+
+        <section class="panel">
+          <h3>স্ট্যাটস</h3>
+          <div class="stat-list">
+            <div>গড় সময়/প্রশ্ন: <strong id="avgTime">0s</strong></div>
+            <div>সর্বোচ্চ স্ট্রিক: <strong id="bestStreak">0</strong></div>
+            <div>মোট অর্জিত পয়েন্ট: <strong id="pointsEarned">0</strong></div>
+            <div>স্ট্রিক বোনাস মোট: <strong id="streakBonusTotal">0</strong></div>
+          </div>
+        </section>
+
+        <section class="panel badges-panel">
+          <h3>অ্যাচিভমেন্টস</h3>
+          <div id="badges" class="badges"></div>
+        </section>
       </div>
 
-      <div class="btn-row">
+      <footer class="result-foot btn-row">
         <button id="saveBtn" class="btn primary">স্কোর সেভ করুন</button>
         <button id="shareBtn" class="btn">শেয়ার</button>
+        <button id="downloadBtn" class="btn">রেজাল্ট ডাউনলোড</button>
         <button id="playAgainBtn" class="btn">আবার খেলা</button>
-      </div>
-
-      <div id="badges" class="badges"></div>
+      </footer>
     </section>
 
     <section id="leaderboard" class="hidden card">
