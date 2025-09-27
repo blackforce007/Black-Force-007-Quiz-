@@ -2,28 +2,45 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
-    background-color: #f0f0f0;
-    transition: background-color 0.3s, color 0.3s;
+    background: linear-gradient(135deg, #0a0a23, #1f1f5c);
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
 }
 
 body.dark-mode {
-    background-color: #222;
-    color: #fff;
+    background: linear-gradient(135deg, #1f1f5c, #0a0a23);
+}
+
+body.light-mode {
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    color: #333;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 20px auto;
     padding: 20px;
     text-align: center;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
-header {
-    margin-bottom: 20px;
+.game-title {
+    font-size: 2.5em;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
+    50% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+    100% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
 }
 
 .theme-toggle {
@@ -31,77 +48,116 @@ header {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     margin: 10px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff00ff, #00ffcc);
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff00ff;
 }
 
 .score-board {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
 }
 
-#question {
-    font-size: 1.5em;
+.question-highlight {
+    font-size: 1.8em;
     margin-bottom: 20px;
+    color: #ff00ff;
+    animation: fadeIn 1s ease-in-out;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 #options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .option {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s, transform 0.2s;
 }
 
 .option:hover {
-    background-color: #e0e0e0;
+    background: rgba(0, 255, 255, 0.3);
+    transform: scale(1.02);
 }
 
 .option.correct {
-    background-color: #28a745;
+    background: #28a745;
+    border-color: #28a745;
     color: white;
+    animation: correctAnim 0.5s;
 }
 
 .option.wrong {
-    background-color: #dc3545;
+    background: #dc3545;
+    border-color: #dc3545;
     color: white;
+    animation: wrongAnim 0.5s;
+}
+
+@keyframes correctAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes wrongAnim {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
 }
 
 #feedback {
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    color: #00ffcc;
 }
 
 #achievements {
     margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 600px) {
     .container {
         padding: 10px;
     }
+    .game-title {
+        font-size: 2em;
+    }
     button {
         width: 100%;
+        font-size: 1em;
     }
 }
