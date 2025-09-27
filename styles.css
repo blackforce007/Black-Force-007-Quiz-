@@ -5,6 +5,12 @@ body {
   color: #fff;
   margin: 0;
   padding: 0;
+  transition: background 0.5s, color 0.5s;
+}
+
+body.light {
+  background: #f0f0f0;
+  color: #000;
 }
 
 h1 {
@@ -25,10 +31,9 @@ button {
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-/* Start Button */
 #start-btn {
   background-color: #ff4500;
   color: #fff;
@@ -37,7 +42,12 @@ button:hover {
   box-shadow: 0 0 10px #ff6347;
 }
 
-/* Option Buttons */
+#theme-toggle {
+  background-color: #1e90ff;
+  color: #fff;
+  font-weight: bold;
+}
+
 .option-btn {
   display: block;
   width: 80%;
@@ -52,13 +62,11 @@ button:hover {
 
 .option-btn.correct {
   background-color: #32cd32;
-  color: #fff;
   font-weight: bold;
 }
 
 .option-btn.wrong {
   background-color: #ff3333;
-  color: #fff;
   font-weight: bold;
 }
 
@@ -69,7 +77,6 @@ button:hover {
   box-shadow: 0 0 10px #ff8c00;
 }
 
-/* HUD */
 #hud {
   display: flex;
   justify-content: space-around;
@@ -84,7 +91,6 @@ button:hover {
   height: 30px;
 }
 
-/* Result Screen */
 #result-screen h2 {
   color: #00ffea;
   text-shadow: 2px 2px #000;
