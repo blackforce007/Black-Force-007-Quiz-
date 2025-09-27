@@ -2,6 +2,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 let correctCount = 0;
 let wrongCount = 0;
+let streak = 0;
 let timer;
 let timeLeft = 30;
 
@@ -14,41 +15,47 @@ const feedbackEl = document.getElementById("feedback");
 const nextBtn = document.getElementById("next-btn");
 const timerEl = document.getElementById("timer");
 const scoreEl = document.getElementById("score");
+const streakEl = document.getElementById("streak");
 const resultScreen = document.getElementById("result-screen");
 const finalScoreEl = document.getElementById("final-score");
 const summaryEl = document.getElementById("summary");
+const themeToggle = document.getElementById("theme-toggle");
 
-// Start Game Button
-startBtn.addEventListener("click", () => {
+startBtn.addEventListener("click", startGame);
+nextBtn.addEventListener("click", () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) showQuestion();
+  else endGame();
+});
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+});
+
+function startGame() {
   startScreen.style.display = "none";
   quizContainer.style.display = "block";
   currentQuestionIndex = 0;
   score = 0;
   correctCount = 0;
   wrongCount = 0;
+  streak = 0;
   showQuestion();
-});
-
-// Next Button
-nextBtn.addEventListener("click", () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    endGame();
-  }
-});
+}
 
 function showQuestion() {
   resetState();
   const current = questions[currentQuestionIndex];
   questionEl.textContent = current.question;
 
-  current.options.forEach((option, index) => {
+  // Randomize options
+  const optionOrder = current.options.map((o,i)=>i).sort(()=>Math.random()-0.5);
+
+  optionOrder.forEach((i) => {
     const button = document.createElement("button");
-    button.textContent = option;
+    button.textContent = current.options[i];
     button.classList.add("option-btn");
-    button.addEventListener("click", () => selectAnswer(index));
+    button.addEventListener("click", () => selectAnswer(i));
     optionsEl.appendChild(button);
   });
 
@@ -71,7 +78,7 @@ function startTimer() {
     if (timeLeft <= 0) {
       clearInterval(timer);
       feedbackEl.textContent = "⛔ সময় শেষ!";
-      markAnswer(-1); // সময় শেষ হলে কোন অপশন চয়ন হয়নি
+      markAnswer(-1);
       nextBtn.style.display = "inline-block";
     }
   }, 1000);
@@ -88,24 +95,24 @@ function markAnswer(index) {
   const optionButtons = optionsEl.querySelectorAll(".option-btn");
 
   optionButtons.forEach((button, i) => {
-    if (i === current.answer) {
-      button.classList.add("correct");
-    } else if (i === index) {
-      button.classList.add("wrong");
-    }
+    if (current.options[i] === current.options[current.answer]) button.classList.add("correct");
+    else if (i === index) button.classList.add("wrong");
     button.disabled = true;
   });
 
   if (index === current.answer) {
-    score += 10 + timeLeft; // Base point + time bonus
+    streak++;
+    score += 10 + timeLeft + streak*5;
     correctCount++;
     feedbackEl.textContent = "✅ সঠিক উত্তর!";
   } else {
+    streak = 0;
     wrongCount++;
     feedbackEl.textContent = "❌ ভুল উত্তর!";
   }
 
   scoreEl.textContent = `স্কোর: ${score}`;
+  streakEl.textContent = `স্ট্রীক: ${streak}`;
 }
 
 function endGame() {
