@@ -13,6 +13,7 @@ let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 function startQuiz() {
     document.getElementById('start-screen').style.display = 'none';
     document.getElementById('quiz-screen').style.display = 'block';
+    document.getElementById('start-sound').play();
     startTime = Date.now();
     loadQuestion();
 }
@@ -31,6 +32,7 @@ function loadQuestion() {
     const questionEl = document.getElementById('question');
     const optionsEl = document.getElementById('options');
     questionEl.textContent = questions[currentQuestion].question;
+    questionEl.classList.add('question-highlight');
     optionsEl.innerHTML = '';
     questions[currentQuestion].options.forEach((option, index) => {
         const button = document.createElement('div');
@@ -60,7 +62,8 @@ function checkAnswer(selected) {
 
     if (selected === correct) {
         options[selected].classList.add('correct');
-        feedbackEl.textContent = 'Right! ✅';
+        feedbackEl.textContent = 'সঠিক! ✅';
+        document.getElementById('correct-sound').play();
         correctAnswers++;
         streak++;
         const basePoints = 10;
@@ -71,7 +74,8 @@ function checkAnswer(selected) {
     } else {
         if (selected !== -1) options[selected].classList.add('wrong');
         options[correct].classList.add('correct');
-        feedbackEl.textContent = 'Wrong! ❌';
+        feedbackEl.textContent = 'ভুল! ❌';
+        document.getElementById('wrong-sound').play();
         wrongAnswers++;
         streak = 0;
     }
@@ -95,13 +99,13 @@ function endQuiz() {
     document.getElementById('final-score').textContent = score;
     document.getElementById('correct-answers').textContent = correctAnswers;
     document.getElementById('wrong-answers').textContent = wrongAnswers;
-    document.getElementById('time-taken').textContent = `${timeTaken} seconds`;
+    document.getElementById('time-taken').textContent = `${timeTaken} সেকেন্ড`;
 
     updateLeaderboard(score);
 }
 
 function updateLeaderboard(score) {
-    const playerName = prompt('Enter your name for the leaderboard:') || 'Anonymous';
+    const playerName = prompt('লিডারবোর্ডের জন্য আপনার নাম লিখুন:') || 'অজ্ঞাত';
     leaderboard.push({ name: playerName, score });
     leaderboard.sort((a, b) => b.score - a.score);
     leaderboard = leaderboard.slice(0, 10);
@@ -122,9 +126,9 @@ function showLeaderboard() {
 
 function checkAchievements() {
     const newAchievements = [];
-    if (score >= 100 && !achievements.includes('Score 100')) newAchievements.push('Score 100');
-    if (streak >= 5 && !achievements.includes('5 Streak')) newAchievements.push('5 Streak');
-    if (correctAnswers >= 10 && !achievements.includes('10 Correct')) newAchievements.push('10 Correct');
+    if (score >= 100 && !achievements.includes('১০০ স্কোর')) newAchievements.push('১০০ স্কোর');
+    if (streak >= 5 && !achievements.includes('৫ স্ট্রীক')) newAchievements.push('৫ স্ট্রীক');
+    if (correctAnswers >= 10 && !achievements.includes('১০ সঠিক')) newAchievements.push('১০ সঠিক');
     achievements.push(...newAchievements);
     localStorage.setItem('achievements', JSON.stringify(achievements));
     updateAchievements();
@@ -149,15 +153,15 @@ document.getElementById('back-btn').addEventListener('click', () => {
     document.getElementById('start-screen').style.display = 'block';
 });
 document.getElementById('share-btn').addEventListener('click', () => {
-    const text = `I scored ${score} in Black Force 007 Quiz! Can you beat me?`;
+    const text = `আমি Black Force 007 Quiz-এ ${score} স্কোর করেছি! তুমি কি আমাকে হারাতে পারবে?`;
     if (navigator.share) {
         navigator.share({ text });
     } else {
-        alert('Share your score: ' + text);
+        alert('আপনার স্কোর শেয়ার করুন: ' + text);
     }
 });
 document.getElementById('theme-btn').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
 });
 
 updateAchievements();
