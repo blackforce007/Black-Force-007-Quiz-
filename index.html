@@ -5,53 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Force 007 Quiz</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1 class="game-title">Black Force 007 Quiz</h1>
-            <div class="theme-toggle">
-                <button id="theme-btn">ডার্ক/লাইট মোড</button>
-            </div>
-        </header>
-        <div id="start-screen">
-            <h2>Black Force 007 Quiz-এ স্বাগতম!</h2>
-            <p>মজার কুইজের মাধ্যমে সামাজিক দক্ষতা শিখুন!</p>
-            <button id="start-btn">কুইজ শুরু করুন</button>
+<body class="dark-mode"> <header>
+        <h1 class="quiz-heading">BLACK FORCE 007 QUIZ</h1>
+        <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">💡</button>
+    </header>
+
+    <main class="quiz-container">
+        
+        <div id="stats-bar" class="stats-bar">
+            <span id="score-display">পয়েন্ট: 0</span>
+            <span id="timer-display">সময়: 30s</span>
+            <span id="streak-display">স্ট্রীক: 0</span>
         </div>
-        <div id="quiz-screen" style="display: none;">
-            <div class="score-board">
-                <span>স্কোর: <span id="score">0</span></span>
-                <span>স্ট্রীক: <span id="streak">0</span></span>
-                <span>সময়: <span id="timer">15</span> সেকেন্ড</span>
-            </div>
-            <div id="question" class="question-highlight"></div>
-            <div id="options"></div>
-            <div id="feedback"></div>
+
+        <div id="quiz-screen">
+            <h2 id="question-text">প্রশ্ন লোড হচ্ছে...</h2>
+            <div id="answer-options" class="options-grid">
+                </div>
+            <div id="feedback-area">
+                </div>
+            <button id="next-button" class="next-btn" disabled>পরবর্তী প্রশ্ন</button>
         </div>
-        <div id="result-screen" style="display: none;">
-            <h2>কুইজ সম্পন্ন!</h2>
-            <p>স্কোর: <span id="final-score"></span></p>
-            <p>সঠিক উত্তর: <span id="correct-answers"></span></p>
-            <p>ভুল উত্তর: <span id="wrong-answers"></span></p>
-            <p>সময় লেগেছে: <span id="time-taken"></span></p>
-            <button id="share-btn">ফলাফল শেয়ার করুন</button>
-            <button id="restart-btn">আবার খেলুন</button>
+
+        <div id="results-screen" class="hidden result-container">
+            <h2>ফলাফল</h2>
+            <p>চূড়ান্ত স্কোর: <span id="final-score">0</span></p>
+            <p>মোট সময়: <span id="total-time">0s</span></p>
+            <p class="correct-answers">সঠিক উত্তর: <span id="correct-count">0</span></p>
+            <p class="wrong-answers">ভুল উত্তর: <span id="wrong-count">0</span></p>
+            <button id="share-score">স্কোর শেয়ার করুন</button>
+            <button id="restart-quiz">আবার শুরু করুন</button>
         </div>
-        <div id="leaderboard-screen" style="display: none;">
+        
+        <div id="leaderboard-screen" class="hidden leaderboard-container">
             <h2>লিডারবোর্ড</h2>
-            <ul id="leaderboard"></ul>
-            <button id="back-btn">হোমে ফিরুন</button>
+            <ul id="leaderboard-list">
+                </ul>
         </div>
-        <div id="achievements">
-            <h3>অ্যাচিভমেন্ট</h3>
-            <ul id="achievement-list"></ul>
+        
+        <div id="achievement-screen" class="hidden achievement-container">
+            <h2>অ্যাচিভমেন্টস</h2>
+            <div id="achievement-list" class="achievements-grid">
+                </div>
         </div>
-    </div>
-    <audio id="correct-sound" src="sounds/correct.mp3"></audio>
-    <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
-    <audio id="start-sound" src="sounds/start.mp3"></audio>
+
+    </main>
+
+    <footer>
+        <button onclick="document.getElementById('leaderboard-screen').classList.toggle('hidden')">লিডারবোর্ড</button>
+        <button onclick="document.getElementById('achievement-screen').classList.toggle('hidden')">অ্যাচিভমেন্টস</button>
+    </footer>
+
     <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
