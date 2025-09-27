@@ -1,32 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Black Force 007 - কুইজ গেম</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Black Force 007 — Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Black Force 007</h1>
-        <div id="quiz-container">
-            <div id="question"></div>
-            <div id="options">
-                <button class="option" onclick="selectOption(this)"></button>
-                <button class="option" onclick="selectOption(this)"></button>
-                <button class="option" onclick="selectOption(this)"></button>
-                <button class="option" onclick="selectOption(this)"></button>
-            </div>
-            <div id="timer"></div>
-            <div id="feedback"></div>
+  <main id="app">
+    <header class="topbar">
+      <h1>Black Force 007</h1>
+      <div class="controls">
+        <label class="switch">
+          <input id="themeToggle" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <section id="menu" class="card">
+      <h2>সাধারণ জ্ঞান কুইজ — সামাজিক মানুষ চিনতে শেখ</h2>
+      <p>প্লে মোড, টাইমার, এবং স্কোরিং অপশন কাস্টমাইজ করুন।</p>
+
+      <div class="row">
+        <label>প্রশ্ন প্রতি সময়:</label>
+        <select id="timerSelect">
+          <option value="15">15 সেকেন্ড</option>
+          <option value="30" selected>30 সেকেন্ড</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>প্রতিটি প্রশ্নের বেস পয়েন্ট:</label>
+        <input id="basePoints" type="number" min="1" value="10" />
+      </div>
+
+      <div class="btn-row">
+        <button id="startBtn" class="btn primary">খেলা শুরু করুন</button>
+        <button id="leaderBtn" class="btn">লিডারবোর্ড</button>
+      </div>
+
+      <small class="muted">Black Force 007 — Offline, client-side quiz app</small>
+    </section>
+
+    <section id="game" class="hidden card">
+      <div class="game-header">
+        <div id="qCounter">প্রশ্ন 1 / 50</div>
+        <div id="scoreBox">স্কোর: <span id="score">0</span></div>
+      </div>
+
+      <div id="questionArea">
+        <h3 id="questionText">প্রশ্ন এখানে দেখাবে</h3>
+        <ul id="choices" class="choices"></ul>
+      </div>
+
+      <div class="game-footer">
+        <div id="timer">00:30</div>
+        <div class="btn-row">
+          <button id="nextBtn" class="btn">পরবর্তী</button>
+          <button id="quitBtn" class="btn">বের হন</button>
         </div>
-        <div id="result-container" class="hidden">
-            <h2>ফলাফল</h2>
-            <div id="score"></div>
-            <button onclick="restartGame()">পুনরায় খেলুন</button>
-        </div>
-    </div>
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+      </div>
+    </section>
+
+    <section id="result" class="hidden card">
+      <h2>ফলাফল</h2>
+      <div class="result-grid">
+        <div>স্কোর:<strong id="finalScore"></strong></div>
+        <div>সঠিক:<strong id="correctCount"></strong></div>
+        <div>ভুল:<strong id="wrongCount"></strong></div>
+        <div>মোট সময়:<strong id="totalTime"></strong></div>
+      </div>
+
+      <div class="btn-row">
+        <button id="saveBtn" class="btn primary">স্কোর সেভ করুন</button>
+        <button id="shareBtn" class="btn">শেয়ার</button>
+        <button id="playAgainBtn" class="btn">আবার খেলা</button>
+      </div>
+
+      <div id="badges" class="badges"></div>
+    </section>
+
+    <section id="leaderboard" class="hidden card">
+      <h2>লিডারবোর্ড</h2>
+      <ol id="leaderList"></ol>
+      <div class="btn-row">
+        <button id="clearLeaders" class="btn">ক্লিয়ার</button>
+        <button id="backToMenu" class="btn">মেনু</button>
+      </div>
+    </section>
+
+    <footer class="foot muted">© Black Force 007 — Ready to deploy (Static)</footer>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
