@@ -3,60 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Force 007 Quiz</title>
+    <title>Black Force 007 - সাধারণ জ্ঞান কুইজ</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode"> <header>
-        <h1 class="quiz-heading">BLACK FORCE 007 QUIZ</h1>
-        <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">💡</button>
-    </header>
-
-    <main class="quiz-container">
-        
-        <div id="stats-bar" class="stats-bar">
-            <span id="score-display">পয়েন্ট: 0</span>
-            <span id="timer-display">সময়: 30s</span>
-            <span id="streak-display">স্ট্রীক: 0</span>
+<body>
+    <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle">
+            <button id="themeToggle">🌙</button>
         </div>
 
-        <div id="quiz-screen">
-            <h2 id="question-text">প্রশ্ন লোড হচ্ছে...</h2>
-            <div id="answer-options" class="options-grid">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="logo">
+                <h1>Black Force 007</h1>
+                <p>সাধারণ জ্ঞান কুইজ</p>
+            </div>
+            <div class="welcome-content">
+                <p>মানুষ চিনতে শেখার কুইজে আপনাকে স্বাগতম!</p>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="totalQuestions">50</span>
+                        <span class="stat-label">প্রশ্ন</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="timePerQuestion">30</span>
+                        <span class="stat-label">সেকেন্ড/প্রশ্ন</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="highScore">0</span>
+                        <span class="stat-label">সর্বোচ্চ স্কোর</span>
+                    </div>
                 </div>
-            <div id="feedback-area">
+                <button id="startGame" class="btn-primary">খেলা শুরু করুন</button>
+                <button id="viewLeaderboard" class="btn-secondary">লিডারবোর্ড</button>
+                <button id="viewAchievements" class="btn-secondary">অ্যাচিভমেন্ট</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <span id="questionNumber">প্রশ্ন 1/50</span>
+                    <span id="timer">30s</span>
                 </div>
-            <button id="next-button" class="next-btn" disabled>পরবর্তী প্রশ্ন</button>
-        </div>
-
-        <div id="results-screen" class="hidden result-container">
-            <h2>ফলাফল</h2>
-            <p>চূড়ান্ত স্কোর: <span id="final-score">0</span></p>
-            <p>মোট সময়: <span id="total-time">0s</span></p>
-            <p class="correct-answers">সঠিক উত্তর: <span id="correct-count">0</span></p>
-            <p class="wrong-answers">ভুল উত্তর: <span id="wrong-count">0</span></p>
-            <button id="share-score">স্কোর শেয়ার করুন</button>
-            <button id="restart-quiz">আবার শুরু করুন</button>
-        </div>
-        
-        <div id="leaderboard-screen" class="hidden leaderboard-container">
-            <h2>লিডারবোর্ড</h2>
-            <ul id="leaderboard-list">
-                </ul>
-        </div>
-        
-        <div id="achievement-screen" class="hidden achievement-container">
-            <h2>অ্যাচিভমেন্টস</h2>
-            <div id="achievement-list" class="achievements-grid">
+                <div class="score-display">
+                    <span>স্কোর: <span id="currentScore">0</span></span>
+                    <span>স্ট্রীক: <span id="currentStreak">0</span></span>
                 </div>
+            </div>
+            
+            <div class="question-container">
+                <h2 id="questionText">প্রশ্ন লোড হচ্ছে...</h2>
+                <div class="options-container">
+                    <!-- Options will be dynamically added -->
+                </div>
+            </div>
+            
+            <div class="feedback-container">
+                <!-- Feedback will be shown here -->
+            </div>
         </div>
 
-    </main>
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-header">
+                <h2>খেলা শেষ!</h2>
+                <p>আপনার পারফরম্যান্স</p>
+            </div>
+            
+            <div class="results-stats">
+                <div class="result-stat">
+                    <span class="result-value" id="finalScore">0</span>
+                    <span class="result-label">মোট স্কোর</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-value" id="correctAnswers">0</span>
+                    <span class="result-label">সঠিক উত্তর</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-value" id="wrongAnswers">0</span>
+                    <span class="result-label">ভুল উত্তর</span>
+                </div>
+                <div class="result-stat">
+                    <span class="result-value" id="timeTaken">0s</span>
+                    <span class="result-label">মোট সময়</span>
+                </div>
+            </div>
+            
+            <div class="achievements-earned">
+                <h3>অর্জিত অ্যাচিভমেন্ট</h3>
+                <div id="achievementsList" class="achievements-list">
+                    <!-- Achievements will be dynamically added -->
+                </div>
+            </div>
+            
+            <div class="results-actions">
+                <button id="playAgain" class="btn-primary">আবার খেলুন</button>
+                <button id="shareResults" class="btn-secondary">ফলাফল শেয়ার করুন</button>
+                <button id="backToHome" class="btn-secondary">হোমে ফিরুন</button>
+            </div>
+        </div>
 
-    <footer>
-        <button onclick="document.getElementById('leaderboard-screen').classList.toggle('hidden')">লিডারবোর্ড</button>
-        <button onclick="document.getElementById('achievement-screen').classList.toggle('hidden')">অ্যাচিভমেন্টস</button>
-    </footer>
+        <!-- Leaderboard Screen -->
+        <div id="leaderboardScreen" class="screen">
+            <div class="leaderboard-header">
+                <h2>লিডারবোর্ড</h2>
+                <button id="backFromLeaderboard" class="btn-secondary">ফিরে যান</button>
+            </div>
+            
+            <div class="leaderboard-content">
+                <div class="leaderboard-list">
+                    <!-- Leaderboard entries will be dynamically added -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Screen -->
+        <div id="achievementsScreen" class="screen">
+            <div class="achievements-header">
+                <h2>অ্যাচিভমেন্ট</h2>
+                <button id="backFromAchievements" class="btn-secondary">ফিরে যান</button>
+            </div>
+            
+            <div class="achievements-content">
+                <div class="achievements-grid">
+                    <!-- Achievements will be dynamically added -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="questions.js"></script>
     <script src="script.js"></script>
