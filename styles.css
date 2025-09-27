@@ -1,82 +1,99 @@
-:root{
-  /* Defense theme palette */
-  --bg:#071028; /* deep navy */
-  --card:#0f2940;
-  --accent:#3f8a3f; /* defense green */
-  --accent-2:#cda22c; /* gold */
-  --muted:#9fb0c9;
-  --text:#e6eef6;
-  --danger:#b33a3a; /* subtle for wrong if needed */
-}
-:root.light{
-  --bg:#f6f8fb;
-  --card:#ffffff;
-  --accent:#2e6d2e;
-  --accent-2:#b88415;
-  --muted:#546b88;
-  --text:#0d1b2a;
-  --danger:#b33a3a;
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
-*{box-sizing:border-box;font-family:Inter, system-ui, sans-serif}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071021);color:var(--text)}
-main{max-width:920px;margin:24px auto;padding:16px}
-.topbar{display:flex;justify-content:space-between;align-items:center}
-.topbar h1{margin:0;font-size:1.4rem}
-.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.5);} 
-.hidden{display:none}
-.row{display:flex;align-items:center;gap:12px;margin:12px 0}
-.btn-row{display:flex;gap:12px;margin-top:14px}
-.btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;cursor:pointer}
-.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071018;border:0}
-.muted{color:var(--muted);font-size:0.9rem}
-.choices{list-style:none;padding:0;margin:12px 0;display:grid;gap:10px}
-.choices li{padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);cursor:pointer;position:relative;transition:transform .12s ease,border .12s ease}
-.choices li:hover{transform:translateY(-3px)}
+h1 {
+  font-size: 2.5em;
+  margin: 20px 0;
+  color: #ffd700;
+  text-shadow: 2px 2px #000;
+}
 
-/* Highlighting for correct/wrong with big icons */
-.choices li.correct{outline:3px solid rgba(63,138,63,0.25);background:linear-gradient(90deg,rgba(63,138,63,0.08),transparent)}
-.choices li.wrong{outline:3px solid rgba(205,162,44,0.22);background:linear-gradient(90deg,rgba(205,162,44,0.06),transparent)}
-.choices li.correct::after,.choices li.wrong::after{position:absolute;right:12px;top:8px;font-size:1.8rem;font-weight:800;padding:6px 8px;border-radius:8px}
-.choices li.correct::after{content:'✔';color:var(--accent);background:rgba(63,138,63,0.06)}
-.choices li.wrong::after{content:'✖';color:var(--accent-2);background:rgba(205,162,44,0.04)}
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-.game-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.status-boxes{display:flex;gap:10px;align-items:center}
-.status{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:600}
-.correct-small{border:1px solid rgba(63,138,63,0.12)}
-.wrong-small{border:1px solid rgba(205,162,44,0.12)}
-#timer{font-weight:700}
-.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.badges{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
-.badge{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.04)}
-.foot{text-align:center;margin-top:14px}
+button:hover {
+  transform: scale(1.1);
+}
 
-/* RESULT DASHBOARD STYLES */
-.result-dashboard .result-top{display:flex;gap:18px;align-items:center}
-.big-score{background:linear-gradient(180deg,rgba(63,138,63,0.12),rgba(63,138,63,0.04));padding:14px;border-radius:12px;text-align:center}
-.big-score .big-num{font-size:2.4rem;font-weight:900}
-.result-body{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
-.panel{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
-.q-breakdown{max-height:320px;overflow:auto;padding:6px;display:grid;gap:8px}
-.q-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(0,0,0,0.06)}
-.q-item.correct{border-left:6px solid var(--accent)}
-.q-item.wrong{border-left:6px solid var(--accent-2)}
-.stat-list div{margin:6px 0}
-.badges-panel .badges{padding:6px}
+/* Start Button */
+#start-btn {
+  background-color: #ff4500;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ff6347;
+}
 
-/* Score gain animation */
-.score-gain{position:absolute;right:8px;top:-26px;font-weight:800;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.06)}
-@keyframes gainUp {0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-26px);}}
-.score-gain.animate{animation:gainUp 900ms ease forwards}
+/* Option Buttons */
+.option-btn {
+  display: block;
+  width: 80%;
+  margin: 12px auto;
+  padding: 12px;
+  font-size: 18px;
+  background: linear-gradient(45deg, #1e3c72, #2a5298);
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #000;
+}
 
-/* mobile */
-@media (max-width:800px){.result-body{grid-template-columns:1fr} main{margin:8px} .result-grid{grid-template-columns:1fr} .choices li{padding:12px}}
+.option-btn.correct {
+  background-color: #32cd32;
+  color: #fff;
+  font-weight: bold;
+}
 
-/* switch */
-.switch{position:relative;display:inline-block;width:48px;height:28px}
-.switch input{opacity:0;width:0;height:0}
-.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:28px}
-.slider:before{position:absolute;content:"";height:22px;width:22px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.25s}
-.switch input:checked + .slider{background:var(--accent)}
-.switch input:checked + .slider:before{transform:translateX(20px)}
+.option-btn.wrong {
+  background-color: #ff3333;
+  color: #fff;
+  font-weight: bold;
+}
+
+#next-btn {
+  background-color: #ffa500;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 0 10px #ff8c00;
+}
+
+/* HUD */
+#hud {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#feedback {
+  font-size: 20px;
+  margin: 15px;
+  height: 30px;
+}
+
+/* Result Screen */
+#result-screen h2 {
+  color: #00ffea;
+  text-shadow: 2px 2px #000;
+}
+
+#result-screen button {
+  background-color: #32cd32;
+  color: #000;
+  font-size: 18px;
+  padding: 12px 25px;
+  border-radius: 12px;
+}
