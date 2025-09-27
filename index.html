@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Force 007 Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Force 007 - সাধারণ জ্ঞান কুইজ</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Black Force 007 Quiz</h1>
-        <div id="quiz">
-            <div id="question-container">
-                <div id="question"></div>
-                <div id="options"></div>
-            </div>
-            <div id="timer">Time: <span id="time">15</span>s</div>
-            <div id="score">Score: 0</div>
-        </div>
-        <div id="result" class="hidden">
-            <h2>Final Score</h2>
-            <p id="final-score"></p>
-            <button onclick="restartQuiz()">Restart</button>
-        </div>
-    </div>
-
-    <audio id="correct-sound" src="https://freesound.org/data/previews/320/320655_5260876-lq.mp3"></audio>
-    <audio id="wrong-sound" src="https://freesound.org/data/previews/109/109662_945474-lq.mp3"></audio>
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+  <div class="container">
+    <header>
+      <h1>🧠 Black Force 007</h1>
+      <button id="toggle-theme">🌙</button>
+    </header>
+    <main id="quiz-container">
+      <div id="question-box"></div>
+      <ul id="options-list"></ul>
+      <div id="timer">⏱️ 30</div>
+      <div id="feedback"></div>
+      <button id="next-btn">পরবর্তী প্রশ্ন</button>
+    </main>
+    <section id="result-screen" class="hidden">
+      <h2>ফলাফল</h2>
+      <p id="score-summary"></p>
+      <button id="restart-btn">আবার খেলো</button>
+      <button id="share-btn">📤 শেয়ার করো</button>
+    </section>
+    <section id="leaderboard" class="hidden">
+      <h2>🏆 লিডারবোর্ড</h2>
+      <ul id="leaderboard-list"></ul>
+    </section>
+  </div>
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
