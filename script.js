@@ -1,82 +1,80 @@
-// Black Force 007 সাধারণ জ্ঞান কুইজ - মেইন গেম লজিক
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+const timeLimit = 15; // 15 seconds for each question
 
-// গেম স্টেট ম্যানেজমেন্ট
-class QuizGame {
-    constructor() {
-        this.currentQuestionIndex = 0;
-        this.score = 0;
-        this.correctAnswers = 0;
-        this.wrongAnswers = 0;
-        this.timeLeft = 30;
-        this.timer = null;
-        this.currentStreak = 0;
-        this.maxStreak = 0;
-        this.startTime = null;
-        this.endTime = null;
-        this.usedQuestions = new Set();
-        this.gameStats = this.loadGameStats();
-        this.currentAchievements = [];
-        
-        this.initializeEventListeners();
-        this.updateHighScoreDisplay();
-        this.loadAchievements();
-    }
-    
-    // গেম স্ট্যাটিসটিক্স লোড/সেভ
-    loadGameStats() {
-        const savedStats = localStorage.getItem('blackForce007GameStats');
-        if (savedStats) {
-            return JSON.parse(savedStats);
+function startGame() {
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById("result-container").classList.add("hidden");
+    loadQuestion();
+}
+
+function loadQuestion() {
+    clearTimer();
+    const questionData = questions[currentQuestionIndex];
+    document.getElementById("question").textContent = questionData.question;
+    const optionsButtons = document.querySelectorAll('.option');
+    optionsButtons.forEach((button, index) => {
+        button.textContent = questionData.options[index];
+        button.classList.remove('feedback-correct', 'feedback-wrong');
+    });
+    startTimer();
+}
+
+function startTimer() {
+    let timeLeft = timeLimit;
+    document.getElementById("timer").textContent = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert('টাইম শেষ!');
+            loadNextQuestion();
         }
-        
-        return {
-            gamesPlayed: 0,
-            totalScore: 0,
-            totalCorrect: 0,
-            totalWrong: 0,
-            totalTime: 0,
-            highScore: 0,
-            maxStreak: 0,
-            perfectScores: 0,
-            totalWins: 0,
-            fastAnswers: 0,
-            uniqueQuestionsAnswered: 0,
-            earlyGames: 0,
-            lateGames: 0,
-            achievementsUnlocked: []
-        };
-    }
+    }, 1000);
+}
+
+function clearTimer() {
+    clearInterval(timer);
+}
+
+function selectOption(optionButton) {
+    clearTimer();
+    const questionData = questions[currentQuestionIndex];
+    const selectedOptionIndex = Array.from(optionButton.parentNode.children).indexOf(optionButton);
     
-    saveGameStats() {
-        localStorage.setItem('blackForce007GameStats', JSON.stringify(this.gameStats));
+    if (selectedOptionIndex === questionData.answer) {
+        score++;
+        optionButton.classList.add('feedback-correct');
+    } else {
+        optionButton.classList.add('feedback-wrong');
+        document.querySelector('.option:nth-child(' + (questionData.answer + 1) + ')').classList.add('feedback-correct');
     }
-    
-    // ইভেন্ট লিসেনার সেটআপ
-    initializeEventListeners() {
-        // থিম টগল
-        document.getElementById('themeToggle').addEventListener('click', this.toggleTheme.bind(this));
-        
-        // স্ক্রীন নেভিগেশন
-        document.getElementById('startGame').addEventListener('click', () => this.showScreen('gameScreen'));
-        document.getElementById('viewLeaderboard').addEventListener('click', () => this.showLeaderboard());
-        document.getElementById('viewAchievements').addEventListener('click', () => this.showAchievements());
-        document.getElementById('playAgain').addEventListener('click', () => this.restartGame());
-        document.getElementById('shareResults').addEventListener('click', () => this.shareResults());
-        document.getElementById('backToHome').addEventListener('click', () => this.showScreen('welcomeScreen'));
-        document.getElementById('backFromLeaderboard').addEventListener('click', () => this.showScreen('welcomeScreen'));
-        document.getElementById('backFromAchievements').addEventListener('click', () => this.showScreen('welcomeScreen'));
+
+    loadNextQuestion();
+}
+
+function loadNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
     }
-    
-    // থিম টগল
-    toggleTheme() {
-        document.body.classList.toggle('light-mode');
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
-    }
-    
-    // স্ক্রীন ম্যানেজমেন্ট
-    showScreen(screenId) {
-        document.querySelectorAll('.screen').forEach(screen => {
-            screen.classList.remove('active');
-        });
-        document
+}
+
+function showResult() {
+    document.getElementById("result-container").classList.remove("hidden");
+    document.getElementById("score").textContent = "আপনার স্কোর: " + score + " / " + questions.length;
+}
+
+function restartGame() {
+    startGame();
+}
+
+// Start Game when page loads
+window.onload = startGame;
