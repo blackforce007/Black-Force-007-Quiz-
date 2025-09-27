@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Force 007 Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Black Force 007 Quiz</h1>
+            <div class="theme-toggle">
+                <button id="theme-btn">Toggle Dark/Light Mode</button>
+            </div>
+        </header>
+        <div id="start-screen">
+            <h2>Welcome to Black Force 007 Quiz!</h2>
+            <p>Learn to recognize social traits through fun quizzes!</p>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div id="quiz-screen" style="display: none;">
+            <div class="score-board">
+                <span>Score: <span id="score">0</span></span>
+                <span>Streak: <span id="streak">0</span></span>
+                <span>Time: <span id="timer">15</span>s</span>
+            </div>
+            <div id="question"></div>
+            <div id="options"></div>
+            <div id="feedback"></div>
+        </div>
+        <div id="result-screen" style="display: none;">
+            <h2>Quiz Completed!</h2>
+            <p>Score: <span id="final-score"></span></p>
+            <p>Correct Answers: <span id="correct-answers"></span></p>
+            <p>Wrong Answers: <span id="wrong-answers"></span></p>
+            <p>Time Taken: <span id="time-taken"></span></p>
+            <button id="share-btn">Share Results</button>
+            <button id="restart-btn">Play Again</button>
+        </div>
+        <div id="leaderboard-screen" style="display: none;">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboard"></ul>
+            <button id="back-btn">Back to Home</button>
+        </div>
+        <div id="achievements">
+            <h3>Achievements</h3>
+            <ul id="achievement-list"></ul>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
