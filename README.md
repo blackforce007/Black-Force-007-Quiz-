@@ -1,5 +1,15 @@
-# Black Force 007 — Offline Quiz (Result Dashboard Added)
+# Black Force 007 Quiz
 
-**নতুন:** সুন্দর রেজাল্ট ড্যাশবোর্ড যা দেখায় — মোট স্কোর, সঠিক/ভুল, সঠিকতার হার, প্রশ্নভিত্তিক ব্রেকডাউন (টাইটেল, পয়েন্ট, সময়), গড় সময়, সর্বোচ্চ স্ট্রিক, স্ট্রিক বোনাস মোট, এবং অ্যাচিভমেন্টস।
+এই গেমটি হলো **সাধারণ জ্ঞান ও সামাজিক সচেতনতা কুইজ**। 
 
-ফাইলগুলো একইভাবে GitHub-এ পুশ করে Vercel/Netlify-এ ডেপ্লয় করুন।
+**Features:**
+- 50 sample questions
+- Auto question change
+- Timer & scoring system
+- Streak & bonus points
+- Correct/Wrong feedback with sound
+- VIP Gaming Theme with Neon colors
+- Offline & Mobile friendly
+- GitHub Pages ready
+
+Deploy: GitHub Pages, Vercel, Netlify
