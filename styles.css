@@ -1,105 +1,54 @@
 body {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  transition: background 0.5s, color 0.5s;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-body.light {
-  background: #f0f0f0;
-  color: #000;
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    background: #1a1a2e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00ffff;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin: 20px 0;
-  color: #ffd700;
-  text-shadow: 2px 2px #000;
+    margin-bottom: 20px;
+    color: #00ffff;
 }
 
 button {
-  padding: 12px 25px;
-  margin: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
+    background-color: #162447;
+    color: #00ffff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-  transform: scale(1.05);
+    background-color: #1f4068;
 }
 
-#start-btn {
-  background-color: #ff4500;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 0 10px #ff6347;
+#options button.correct {
+    background-color: green;
+    color: #fff;
 }
 
-#theme-toggle {
-  background-color: #1e90ff;
-  color: #fff;
-  font-weight: bold;
+#options button.wrong {
+    background-color: red;
+    color: #fff;
 }
 
-.option-btn {
-  display: block;
-  width: 80%;
-  margin: 12px auto;
-  padding: 12px;
-  font-size: 18px;
-  background: linear-gradient(45deg, #1e3c72, #2a5298);
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 5px #000;
-}
-
-.option-btn.correct {
-  background-color: #32cd32;
-  font-weight: bold;
-}
-
-.option-btn.wrong {
-  background-color: #ff3333;
-  font-weight: bold;
-}
-
-#next-btn {
-  background-color: #ffa500;
-  color: #fff;
-  font-size: 18px;
-  box-shadow: 0 0 10px #ff8c00;
-}
-
-#hud {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-#feedback {
-  font-size: 20px;
-  margin: 15px;
-  height: 30px;
-}
-
-#result-screen h2 {
-  color: #00ffea;
-  text-shadow: 2px 2px #000;
-}
-
-#result-screen button {
-  background-color: #32cd32;
-  color: #000;
-  font-size: 18px;
-  padding: 12px 25px;
-  border-radius: 12px;
+.hidden {
+    display: none;
 }
