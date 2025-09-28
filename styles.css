@@ -1,68 +1,63 @@
-:root {
-  --bg-light: #f0f0f0;
-  --bg-dark: #1e1e1e;
-  --text-light: #000;
-  --text-dark: #fff;
-  --primary: #0077ff;
-  --success: #28a745;
-  --error: #dc3545;
-}
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
   margin: 0;
   padding: 0;
-  background: var(--bg-light);
-  color: var(--text-light);
-  transition: all 0.3s ease;
 }
-body.dark {
-  background: var(--bg-dark);
-  color: var(--text-dark);
-}
+
 .container {
   max-width: 600px;
   margin: auto;
   padding: 20px;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+button {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
 }
-#question-box {
-  font-size: 1.2em;
+
+button:hover {
+  background: #e68900;
+}
+
+#timer {
+  font-size: 22px;
   margin-bottom: 10px;
 }
-#options-list {
+
+#options {
   list-style: none;
   padding: 0;
 }
-#options-list li {
-  padding: 10px;
-  margin: 5px 0;
-  background: #ddd;
+
+#options li {
+  background: #34495e;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: 0.3s;
 }
-#options-list li.correct {
-  background: var(--success);
+
+#options li:hover {
+  background: #1abc9c;
 }
-#options-list li.wrong {
-  background: var(--error);
+
+.correct {
+  background: green !important;
 }
-#timer {
-  font-weight: bold;
-  margin-top: 10px;
+
+.wrong {
+  background: red !important;
 }
 .hidden {
   display: none;
-}
-button {
-  margin-top: 10px;
-  padding: 10px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
