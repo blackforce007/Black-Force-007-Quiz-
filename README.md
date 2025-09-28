@@ -1,10 +1,26 @@
-# 🧠 Black Force 007 - সাধারণ জ্ঞান কুইজ
+# 🎮 Black Force 007 — Quiz Game  
 
-একটি সম্পূর্ণ ক্লায়েন্ট-সাইড কুইজ গেম যা HTML, CSS, এবং JavaScript দিয়ে তৈরি।  
-✅ টাইমার, পয়েন্ট, ফিডব্যাক, লিডারবোর্ড  
-✅ মোবাইল ফ্রেন্ডলি UI  
-✅ ডার্ক/লাইট মোড  
-✅ অফলাইন মোড  
-✅ ৫০টি সামাজিক সচেতনতা প্রশ্ন
+A social knowledge quiz game built with **HTML, CSS, and JavaScript**.  
+This project is fully client-side and uses **questions.json** to load 50 sample questions.  
 
-## ফোল্ডার স্ট্রাকচার
+---
+
+## ✨ Features  
+
+- ✅ **50 social knowledge / human behavior questions**  
+- ✅ **Timer system** (configurable: 15s / 30s)  
+- ✅ **Scoring system**  
+  - Base points  
+  - Time bonus  
+  - Streak bonus  
+- ✅ **Answer feedback**  
+  - Correct → Green highlight + player icon  
+  - Wrong → Red highlight + error sound  
+- ✅ **Auto-next question** (when time ends or answered)  
+- ✅ **Result & leaderboard** (saved in `localStorage`)  
+- ✅ **Restart option** after finishing  
+- ✅ **Mobile-friendly UI**  
+
+---
+
+## 📂 Project Structure
